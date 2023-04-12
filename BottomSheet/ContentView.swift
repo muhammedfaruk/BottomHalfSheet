@@ -8,14 +8,28 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var isSheetPresented: Bool = false
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Button {
+                isSheetPresented.toggle()
+            } label: {
+                Text("Open Sheet")
+                    .padding()
+            }
+
         }
         .padding()
+        .halfSheet(isPresented: $isSheetPresented) {
+            ZStack {
+                Color.mint
+                Text("Hello")
+                    .foregroundColor(.black)
+            }
+            .ignoresSafeArea()
+        }
     }
 }
 
